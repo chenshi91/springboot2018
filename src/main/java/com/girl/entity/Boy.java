@@ -8,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+
 import java.util.Date;
 
 
@@ -18,6 +20,7 @@ public class Boy {
     @GeneratedValue
     private Integer id;
     private String name;
+    @Max(value=30,message="耍帅不能超过30岁")
     private Integer age;
     private String  address;
     @DateTimeFormat(pattern = "yyyy-MM-d")
