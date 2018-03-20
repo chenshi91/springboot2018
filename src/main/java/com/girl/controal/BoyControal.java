@@ -1,17 +1,20 @@
 package com.girl.controal;
 
-import com.girl.dao.BoyRepository;
-import com.girl.entity.Boy;
-import com.girl.entity.Girl;
-import com.girl.entity.User;
-import com.girl.utils.Result;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import java.text.ParseException;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.girl.dao.BoyRepository;
+import com.girl.entity.Boy;
+import com.girl.utils.Result;
 
 @Controller
 @RequestMapping(value = "/boy")
