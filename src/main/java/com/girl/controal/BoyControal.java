@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.girl.dao.BoyRepository;
 import com.girl.entity.Boy;
+import com.girl.exception.MyException;
 import com.girl.utils.Result;
 
 @Controller
@@ -28,7 +29,7 @@ import com.girl.utils.Result;
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
-    public Result demo1(@Valid Boy boy,BindingResult bindingResult){
+    public Result demo1(@Valid()Boy boy,BindingResult bindingResult){
     	if (bindingResult.hasErrors()) {
 			return	Result.error(bindingResult.getFieldError().getDefaultMessage());
 		}
@@ -38,6 +39,9 @@ import com.girl.utils.Result;
     @ResponseBody
     @RequestMapping(value = "/selectById",method = RequestMethod.GET)
     public Result demo2(Integer id) throws ParseException {
+    	if(boyRepository.findOne(id)==null){
+    		throw new MyException((byte)101, "查询结果为空");
+    	}
         return Result.success(boyRepository.findOne(id));
     }
 
@@ -49,7 +53,7 @@ import com.girl.utils.Result;
         if (selectBoy!=null) {
             return Result.success(boyRepository.saveAndFlush(boy));
         }
-        return Result.error(boy);
+        return Result.error("修改失败");
     }
 
     @ResponseBody

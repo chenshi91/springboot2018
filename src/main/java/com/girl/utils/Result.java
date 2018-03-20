@@ -41,8 +41,11 @@ public class Result {
     public static Result success(Object object){
         return new Result(200,"success",object);
     }
-    public static Result error(Object object){
-        return new Result(500, "error", object);
+    public static Result error(String message){
+        return new Result(500, message, null);
+    }
+    public static Result myError(Integer code,String message){
+        return new Result(code, message, null);
     }
 
     @Override

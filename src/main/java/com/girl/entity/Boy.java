@@ -3,6 +3,8 @@ package com.girl.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ public class Boy {
     @Id
     @GeneratedValue
     private Integer id;
+    @NotBlank(message="姓名毕传")
     private String name;
     @Max(value=30,message="耍帅不能超过30岁")
     private Integer age;
@@ -84,4 +87,14 @@ public class Boy {
     public void setAddress(String address) {
         this.address = address;
     }
+
+	/* 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Boy [" + (id != null ? "id=" + id + ", " : "") + (name != null ? "name=" + name + ", " : "")
+				+ (age != null ? "age=" + age + ", " : "") + (address != null ? "address=" + address + ", " : "")
+				+ (birthday != null ? "birthday=" + birthday : "") + "]";
+	}
 }

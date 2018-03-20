@@ -46,7 +46,7 @@ import com.girl.utils.Result;
             userResponse.put(user.getId(),user);
             return Result.success(user);
         }
-        return Result.error(updateUser);
+        return Result.error("修改失败");
     }
 
     @ResponseBody
@@ -54,7 +54,7 @@ import com.girl.utils.Result;
     public Result   delete(Integer id){
         User user = userResponse.get(id);
         if (user==null) {
-            return Result.error(user);
+            return Result.error("删除失败，id不存在");
         }
         userResponse.remove(user);
         return Result.success(user);
